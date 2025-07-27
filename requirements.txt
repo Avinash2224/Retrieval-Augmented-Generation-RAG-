@@ -1,0 +1,11 @@
+langchain
+langgraph
+autogen-agentchat
+openai
+tiktoken
+faiss-cpu
+sentence-transformers
+typer
+rich
+pytest
+langchain-groq
