@@ -66,3 +66,25 @@ _Last Updated: {{ today's date }}_
 ```
 
 Let me know if you’d like this written to a file or want a Jupyter notebook version for evaluation automation.
+
+
+---
+
+## 🧪 Evaluation Framework
+
+This section evaluates the RAG system using a diverse set of question types to test factual accuracy, retrieval quality, and reasoning capabilities.
+
+---
+
+### 🔍 Updated Test Questions
+
+| # | **Scenario**           | **Test Question**                                                                    | **Expected Answer Summary**                                                               | **Notes / Results**        |
+|---|------------------------|----------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|-----------------------------|
+| 1 | Factual Retrieval      | When and where was the Titanic constructed?                                           | Construction began in 1909 at Harland and Wolff Shipyard, Belfast, Ireland                | ✅ / ❌ / Add evaluation note |
+| 2 | Procedural Knowledge   | How many lifeboats did Titanic carry and why was it controversial?                   | 20 lifeboats; not enough for all passengers, led to public safety concerns                | ✅ / ❌ / Add evaluation note |
+| 3 | Comparative Analysis   | What was the relationship between Titanic, Olympic, and Britannic?                   | All were sister ships; Britannic was originally named “Gigantic”                           | ✅ / ❌ / Add evaluation note |
+| 4 | Edge Case (No Info)    | Who was the captain of the RMS Lusitania?                                            | No relevant information in documents; system should respond with a fallback/no-evidence   | ✅ / ❌ / Add evaluation note |
+| 5 | Complex Query          | Summarize key design flaws leading to Titanic’s sinking.                             | Multiple causes: insufficient lifeboats, flawed watertight bulkheads, brittle steel, etc. | ✅ / ❌ / Add evaluation note |
+
+> ✅ = Accurate and grounded in retrieved evidence  
+> ❌ = Incorrect, hallucinated, or vague answer

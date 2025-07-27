@@ -1,8 +1,6 @@
+# 🧠 Retrieval-Augmented Generation (RAG) CLI & API System
 
-````markdown
-# 🧠 Retrieval-Augmented Generation (RAG) CLI System
-
-A command-line RAG application that allows you to ask natural language questions against your local documents using FAISS + LLMs.
+A command-line and FastAPI-based RAG application that allows you to ask natural language questions against your local documents using FAISS + LLMs.
 
 ---
 
@@ -12,61 +10,77 @@ A command-line RAG application that allows you to ask natural language questions
 ```bash
 git clone <your-project-repo-url>
 cd <your-project-folder>
-````
+```
 
 ### 2. Create and Activate Virtual Environment
 
 #### For Linux/Mac:
-
 ```bash
 python -m venv venv
 source venv/bin/activate
 ```
 
 #### For Windows:
-
 ```bash
 python -m venv venv
 venv\Scripts\activate
 ```
 
 ### 3. Install Dependencies
-
 ```bash
 pip install -r requirements.txt
 ```
 
 ### 4. Add Knowledge Files
-
 Place your `.txt`, `.md`, or `.pdf` files in the `sample_corpus/` folder.
 
-### 5. Set Your GROQ API Key
+---
 
-Get your key from the [Groq Console](https://console.groq.com/) and set it in your environment:
+## 🔑 Set Your GROQ API Key
+
+Get your key from the [Groq Console](https://console.groq.com/) and set it in your environment.
 
 #### For Linux/Mac:
-
 ```bash
 export GROQ_API_KEY=sk-your-groq-api-key-here
 ```
 
 #### For Windows:
-
 ```bash
 set GROQ_API_KEY=sk-your-groq-api-key-here
 ```
 
-### 6. Run the Application
+---
 
+## 🚀 Run the Application
+
+### ▶️ Option 1: Run the CLI Application
 ```bash
 python src/main.py sample_corpus/
 ```
 
-You’ll see a CLI prompt:
-
-```
+You'll see:
+```text
 Ask a question (or 'exit'):
 ```
+
+---
+
+### ▶️ Option 2: Run the FastAPI Server
+
+First, **set your Groq API key**, then run the server:
+
+```bash
+export GROQ_API_KEY=sk-your-groq-api-key-here
+uvicorn api_server:app --reload --port 8000
+```
+
+Then open your browser at:
+```
+http://127.0.0.1:8000/docs
+```
+
+This launches Swagger UI for testing the API.
 
 ---
 
@@ -99,7 +113,7 @@ Ask a question (or 'exit'):
           |
           v
 +---------------------+
-|   CLI Interface      |
+|   CLI/API Interface  |
 +---------------------+
           |
           v
@@ -116,7 +130,7 @@ Ask a question (or 'exit'):
 * **Vector Store**: FAISS for fast local semantic search.
 * **Embeddings**: `sentence-transformers` for quality retrieval.
 * **Modular Code**: Clean separation of loaders, retrievers, and generators.
-* **CLI Interface**: Powered by `Typer` and `Rich` for a beautiful UX.
+* **CLI & API Interfaces**: Typer + FastAPI + Swagger UI.
 * **Observability**: Logs for retrieval and answer tracking.
 * **Error Handling**: User-friendly errors for missing keys or models.
 * **Supported File Types**: `.txt`, `.md`, `.pdf`
@@ -124,7 +138,7 @@ Ask a question (or 'exit'):
 
 ---
 
-## 🚀 Quick Start
+## 🧪 Quick Test
 
 ```bash
 # Step 1: Add files
@@ -133,21 +147,19 @@ cp your_docs/*.pdf sample_corpus/
 # Step 2: Export Groq API key
 export GROQ_API_KEY=sk-...
 
-# Step 3: Run
+# Step 3: Run CLI
 python src/main.py sample_corpus/
+
+# OR run API server
+uvicorn api_server:app --reload --port 8000
 ```
 
-Then start asking questions like:
+Then test via:
 
 ```text
-Ask a question (or 'exit'): When and where was the Titanic constructed?
+http://127.0.0.1:8000/docs
 ```
 
 ---
 
 Happy hacking! 🛠️
-
-```
-
-Let me know if you'd like this saved as a file or want to add a logo/badge section.
-```

@@ -29,7 +29,7 @@ def main(doc_path: str):
             break
         q_emb = embed_texts([q], model)
         start_t = time.time()
-        retrieved = store.retrieve(q_emb, k=3)
+        retrieved = store.retrieve(q_emb, k=7)
         evidences = [text for text, _ in retrieved]
         log_trace("retrieve", question=q, evidence=evidences)
         ans = answer_query(q, evidences)
