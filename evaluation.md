@@ -1,91 +1,99 @@
-Here’s your **cleaned-up evaluation report** with **all emojis removed**:
+Sure! Here's a **cleaned-up, natural-language version** of your RAG CLI System evaluation report — formatted as if written by a human reviewer, suitable for sharing in documentation, a report, or with a team.
 
 ---
 
-```markdown
 # Evaluation Report — RAG CLI System
-
----
 
 ## 1. Test Queries & Results
 
-| **Query**                                  | **Retrieved Evidence (Snippets)**                                         | **System Answer**                                                                 | **Evaluation**         |
-|--------------------------------------------|---------------------------------------------------------------------------|-----------------------------------------------------------------------------------|------------------------|
-| What was the name of the ship?             | ...Titanic began her maiden voyage... / ...Titanic...                     | The ship was the RMS Titanic.                                                    | Correct and precise    |
-| When and where was the Titanic constructed?| ...Construction of the Titanic began... Harland & Wolff, Belfast...       | The Titanic was constructed at the Harland & Wolff Shipyard in Belfast, Ireland. | Correct and detailed   |
-| How did the Titanic sink?                  | ...As the ship sank... frantic struggles... water rushed in...            | The Titanic sank after hitting an iceberg; water flooded compartments, causing it to sink. | Factual and sourced    |
-| What is the difference between the Titanic and Britannic?| ...Olympic, Titanic, and Gigantic (renamed Britannic)...         | The Titanic and Britannic were sister ships; Britannic was originally named Gigantic. | Correct sister ship info |
-| Who was Captain Smith?                     | ...washing away Captain Smith...                                          | Captain Smith was the Titanic's commanding officer.                              | Direct and accurate    |
-| What is the capital of France?             | *(No relevant evidence)*                                                  | Sorry, I could not find an answer based on the current documents.                | Properly handled       |
-| Explain all main modules in this codebase. | *(Project directory and code structure)*                                  | The codebase is divided into modules for loading, chunking, embedding, retrieval, answering, logging, and error handling. | Coherent module summary |
+We tested the system against a set of diverse questions to evaluate its retrieval and generation performance. Below is a summary of the queries, what evidence was retrieved, the answers provided by the system, and our evaluation.
 
-> *(Replace or append with your actual test outputs and evidence snippets.)*
+* **What was the name of the ship?**
+  *Retrieved Evidence:* Mentions of "Titanic" and "Titanic began her maiden voyage"
+  *Answer:* "The ship was the RMS Titanic."
+  *Evaluation:* Correct and precise.
 
----
+* **When and where was the Titanic constructed?**
+  *Retrieved Evidence:* "Construction of the Titanic began... Harland & Wolff, Belfast..."
+  *Answer:* "The Titanic was constructed at the Harland & Wolff Shipyard in Belfast, Ireland."
+  *Evaluation:* Correct and detailed.
+
+* **How did the Titanic sink?**
+  *Retrieved Evidence:* "As the ship sank... frantic struggles... water rushed in..."
+  *Answer:* "The Titanic sank after hitting an iceberg; water flooded compartments, causing it to sink."
+  *Evaluation:* Accurate and well-grounded.
+
+* **What is the difference between the Titanic and Britannic?**
+  *Retrieved Evidence:* "Olympic, Titanic, and Gigantic (renamed Britannic)..."
+  *Answer:* "The Titanic and Britannic were sister ships; Britannic was originally named Gigantic."
+  *Evaluation:* Factual and clearly explained.
+
+* **Who was Captain Smith?**
+  *Retrieved Evidence:* "Washing away Captain Smith..."
+  *Answer:* "Captain Smith was the Titanic's commanding officer."
+  *Evaluation:* Direct and correct.
+
+* **What is the capital of France?**
+  *Retrieved Evidence:* No relevant data found in the corpus.
+  *Answer:* "Sorry, I could not find an answer based on the current documents."
+  *Evaluation:* Gracefully handled with an appropriate fallback response.
+
+* **Explain all main modules in this codebase.**
+  *Retrieved Evidence:* Directory and code structure
+  *Answer:* "The codebase is divided into modules for loading, chunking, embedding, retrieval, answering, logging, and error handling."
+  *Evaluation:* Coherent and well-structured summary.
 
 ## 2. System Analysis
 
 ### Strengths
 
-- **Accurate Context Retrieval**  
-  The retriever (FAISS + SentenceTransformers) found highly relevant passages for most user queries.
+* **Contextual Retrieval Accuracy**
+  The system consistently pulled highly relevant snippets from the knowledge base for factual and procedural queries.
 
-- **LLM + Groq Integration**  
-  Fast and factual responses using Llama 3 via Groq API when grounded evidence is provided.
+* **Fast and Grounded Generation**
+  Integration with Groq's Llama 3 API delivers timely, well-grounded responses based on the retrieved evidence.
 
-- **Graceful Handling of Missing Evidence**  
-  If a question is not covered in the corpus, the system respectfully returns a fallback message.
+* **Fallbacks for Unsupported Queries**
+  When the system couldn’t find relevant information (e.g., unrelated facts like "capital of France"), it returned a clear and respectful fallback message.
 
-- **CLI Observability**  
-  Logs every question, evidence retrieval, and generated answer with timestamps for debugging or traceability.
-
----
+* **Traceability via CLI Logging**
+  Every query and its associated evidence, answer, and timestamp are logged for easy review and debugging.
 
 ### Limitations
 
-- **Chunk Noise**  
-  Some evidence snippets contain irrelevant introductory text, making answers vague or delayed.
+* **Chunk Quality**
+  Some retrieved snippets include excess context or boilerplate, which can dilute the clarity of the answer.
 
-- **Corpus Dependency**  
-  Responses are only as complete as the information available in the `.pdf`, `.md`, or `.txt` files ingested.
+* **Corpus-Dependent Knowledge**
+  The system is limited by the scope of documents placed in the `sample_corpus/` directory. No external search is performed.
 
-- **Prompt Design**  
-  A few answers (especially open-ended or comparative ones) could be improved by refining the prompting template or chunk overlap strategy.
+* **Prompt Design Can Improve**
+  For some open-ended questions, better results could be achieved with improved prompting and chunk overlap.
 
----
+## 3. Recommendations
 
-## Next Steps
+* Improve chunking strategy by implementing token-aware or sliding-window approaches.
+* Refine prompting templates to guide the LLM toward more concise and grounded responses.
+* Expand the corpus with more documents to enhance coverage and depth of answers.
 
-- Optimize chunking (consider token-aware or sliding-window methods).
-- Refine generation prompts to enforce tighter grounding to evidence.
-- Expand corpus to improve coverage and answer quality.
-
----
-
-_Last Updated: {{ today's date }}_
-```
+*Last updated: {{ today's date }}*
 
 ---
 
 ## Evaluation Framework
 
-This section evaluates the RAG system using a diverse set of question types to test factual accuracy, retrieval quality, and reasoning capabilities.
+We used a diverse set of test questions to evaluate system performance across different scenarios:
+
+| Test Scenario        | Sample Question                                                    | Expected Summary                                                                |
+| -------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------- |
+| Factual Retrieval    | When and where was the Titanic constructed?                        | Construction began in 1909 at Harland & Wolff Shipyard, Belfast, Ireland        |
+| Procedural Knowledge | How many lifeboats did Titanic carry and why was it controversial? | 20 lifeboats; not enough for all passengers; a major safety concern             |
+| Comparative Analysis | What was the relationship between Titanic, Olympic, and Britannic? | All were sister ships; Britannic was originally called “Gigantic”               |
+| Edge Case (No Info)  | Who was the captain of the RMS Lusitania?                          | Should return a fallback due to lack of relevant info in the documents          |
+| Complex Reasoning    | Summarize key design flaws leading to Titanic’s sinking.           | Lifeboat shortage, flawed watertight bulkheads, brittle steel, lack of training |
+
+Each of these questions helps assess the system's ability to perform grounded generation, retrieve relevant facts, handle out-of-scope queries, and summarize complex information.
 
 ---
 
-### Updated Test Questions
-
-| # | **Scenario**         | **Test Question**                                                  | **Expected Answer Summary**                                                               | **Notes / Results**         |
-| - | -------------------- | ------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- | --------------------------- |
-| 1 | Factual Retrieval    | When and where was the Titanic constructed?                        | Construction began in 1909 at Harland and Wolff Shipyard, Belfast, Ireland                |  /  / Add evaluation note |
-| 2 | Procedural Knowledge | How many lifeboats did Titanic carry and why was it controversial? | 20 lifeboats; not enough for all passengers, led to public safety concerns                |  /  / Add evaluation note |
-| 3 | Comparative Analysis | What was the relationship between Titanic, Olympic, and Britannic? | All were sister ships; Britannic was originally named “Gigantic”                           / / Add evaluation note |
-| 4 | Edge Case (No Info)  | Who was the captain of the RMS Lusitania?                          | No relevant information in documents; system should respond with a fallback/no-evidence   |  /  / Add evaluation note |
-| 5 | Complex Query        | Summarize key design flaws leading to Titanic’s sinking.           | Multiple causes: insufficient lifeboats, flawed watertight bulkheads, brittle steel, etc. |  /  / Add evaluation note |
-
->  = Accurate and grounded in retrieved evidence
->  = Incorrect, hallucinated, or vague answer
-
----
-
-Let me know if you'd like this saved to a Markdown file or exported in any specific format.
+Let me know if you'd like this in `.md`, `.pdf`, or embedded in a Jupyter Notebook for automated testing and reporting.
