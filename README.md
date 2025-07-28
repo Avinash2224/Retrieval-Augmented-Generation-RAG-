@@ -8,8 +8,7 @@ A command-line and FastAPI-based RAG application that allows you to ask natural 
 
 ### 1. Clone and Enter Project Directory
 ```bash
-git clone <your-project-repo-url>
-cd <your-project-folder>
+git clone <https://github.com/Avinash2224/Retrieval-Augmented-Generation-RAG-.git>
 ```
 
 ### 2. Create and Activate Virtual Environment
