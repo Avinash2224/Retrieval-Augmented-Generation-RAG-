@@ -76,7 +76,6 @@ We tested the system against a set of diverse questions to evaluate its retrieva
 * Refine prompting templates to guide the LLM toward more concise and grounded responses.
 * Expand the corpus with more documents to enhance coverage and depth of answers.
 
-*Last updated: {{ today's date }}*
 
 ---
 
