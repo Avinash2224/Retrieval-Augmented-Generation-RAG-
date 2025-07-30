@@ -14,7 +14,7 @@ def answer_query(question: str, evidences: List[str]) -> str:
 
     try:
         llm = ChatGroq(
-            model_name="llama3-70b-8192",  # You can also use other Groq-available model names
+            model_name="llama3-70b-8192",  
             temperature=0.1
         )
         response = llm.invoke(prompt[:3500])
